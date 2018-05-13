@@ -16,12 +16,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.npkompleet.phenomenon.bowser.MenuActivity;
+import com.google.gson.Gson;
 import com.npkompleet.phenomenon.bowser.ProfileActivity;
 import com.npkompleet.phenomenon.bowser.R;
-import com.npkompleet.phenomenon.bowser.mvp.models.UserInfo;
-import com.npkompleet.phenomenon.bowser.mvp.models.UserList;
-import com.npkompleet.phenomenon.bowser.mvp.models.UserListAccess;
+import com.npkompleet.phenomenon.bowser.mvp.models.MainAccess;
+import com.npkompleet.phenomenon.bowser.mvp.models.QueryParameters;
+import com.npkompleet.phenomenon.bowser.mvp.models.User;
+import com.npkompleet.phenomenon.bowser.mvp.models.UserAccess;
 import com.npkompleet.phenomenon.bowser.retrofit.MyApiEndpointInterface;
 import com.npkompleet.phenomenon.bowser.retrofit.RetrofitUtils;
 
@@ -39,15 +40,14 @@ public class UserManagerActivity extends AppCompatActivity implements SwipeRefre
     @BindView(R.id.rv_user_list)
     RecyclerView mUserRecyclerView;
 
-    @BindView(R.id.swipeLayout)
+    @BindView(R.id.fab)
     FloatingActionButton fab;
 
-    @BindView(R.id.fab)
+    @BindView(R.id.swipeLayout)
     SwipeRefreshLayout swipeRefreshLayout;
 
     UserListAdapter adapter;
 
-    //List<UserInfo> users= new ArrayList<UserInfo>();
 
 
     @Override
@@ -60,7 +60,7 @@ public class UserManagerActivity extends AppCompatActivity implements SwipeRefre
         setSupportActionBar(toolbar);
 
         mUserRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter= new UserListAdapter(this, new ArrayList<UserInfo>(), this);
+        adapter= new UserListAdapter(this, new ArrayList<User>(), this);
         mUserRecyclerView.setAdapter(adapter);
 
         swipeRefreshLayout.setOnRefreshListener(this);
@@ -101,6 +101,7 @@ public class UserManagerActivity extends AppCompatActivity implements SwipeRefre
 
 
 
+    //checks for network
     public boolean networkActive() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = cm.getActiveNetworkInfo();
@@ -109,6 +110,7 @@ public class UserManagerActivity extends AppCompatActivity implements SwipeRefre
 
 
 
+    //loads or reloads users
     @Override
     public void onRefresh() {
 
@@ -123,39 +125,32 @@ public class UserManagerActivity extends AppCompatActivity implements SwipeRefre
 
         MyApiEndpointInterface myApi= RetrofitUtils.getService();
 
-        UserListAccess access= new UserListAccess(10, 0, "userList");
+        MainAccess access= new MainAccess("fait_users", "get", new UserAccess(), new QueryParameters.ValueArray());
 
-        //Call<User> call = myApi.loginUser(mEmailView.getText().toString(), mPasswordView.getText().toString(), "login");
-        Call<UserList> call = myApi.getUserList(access);
-        //Toast.makeText(this, "text", Toast.LENGTH_SHORT).show();
+        Gson gson = new Gson();
+        String uaString = gson.toJson(access);
+        Toast.makeText(this, uaString, Toast.LENGTH_SHORT).show();
 
-        call.enqueue(new Callback<UserList>(){
+
+        Call<List<User>> call = myApi.getUserList(access);
+
+
+        call.enqueue(new Callback<List<User>>(){
 
             @Override
-            public void onResponse(Call<UserList> call, Response<UserList> response) {
+            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                 //int statusCode = response.code();
-                UserList users = response.body();
+                List<User> returnedUsers = response.body();
 
-                List<UserInfo> returnedUsers= users.getUserInfo();
 
                 adapter.swapData(returnedUsers);
                 swipeRefreshLayout.setRefreshing(false);
 
-                //Toast.makeText(UserManagerActivity.this, user.getMessage(), Toast.LENGTH_SHORT).show();
 
-               /* if (user.getStatus().equals("1") && user.getUserInfo().getUserStatus().equals("Active")){
-                    Snackbar.make(mLoginFormView, user.getMessage(), Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
-                    startMenuActivity(user);
-                }else{
-                    mProgressView.setVisibility(View.GONE);
-                    Snackbar.make(mLoginFormView, "Wrong Email or Password", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
-                }*/
             }
 
             @Override
-            public void onFailure(Call<UserList> call, Throwable t) {
+            public void onFailure(Call<List<User>> call, Throwable t) {
                 swipeRefreshLayout.setRefreshing(false);
                 Toast.makeText(UserManagerActivity.this, "Something went wrong. Try again", Toast.LENGTH_SHORT).show();
                 t.printStackTrace();
@@ -171,7 +166,7 @@ public class UserManagerActivity extends AppCompatActivity implements SwipeRefre
     }
 
     @Override
-    public void onClickUser(UserInfo user) {
+    public void onClickUser(User user) {
         Intent intent= new Intent(this, ProfileActivity.class);
         intent.putExtra("profile", user);
         startActivity(intent);

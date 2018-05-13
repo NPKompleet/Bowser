@@ -82,5 +82,8 @@
         </attr>
     </declare-styleable>
 
+    <declare-styleable name="SignatureView"/>
+
+
 
 </resources>

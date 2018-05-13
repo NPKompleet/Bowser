@@ -22,4 +22,22 @@
     <string name="title_activity_operation_dispense">OperationDispenseActivity</string>
     <string name="title_activity_user_manager">UserManagerActivity</string>
     <string name="title_activity_group_manager">GroupManagerActivity</string>
+    <string name="title_activity_unit_manager">UnitManagerActivity</string>
+    <string name="title_activity_unit">UnitActivity</string>
+    <string name="title_activity_forms">FormsActivity</string>
+    <string name="title_activity_designation">Designations</string>
+    <string name="title_activity_designation_manager">Designations</string>
+    <string name="title_activity_company_manager">Companies</string>
+    <string name="title_activity_customer_manager">Customers</string>
+    <string name="title_activity_location_manager">Locations</string>
+    <string name="title_activity_truck_manager">Trucks</string>
+    <string name="title_activity_product_manager">Products</string>
+    <string name="title_activity_tank_manager">Tanks</string>
+    <string name="title_activity_bowser_manager">Bowsers</string>
+    <string name="title_activity_form_adi">ADI Form</string>
+    <string name="title_activity_list_adi">ADI List</string>
+    <string name="title_activity_form_ptn">PTN Form</string>
+    <string name="title_activity_list_ptn">PTN List</string>
+    <string name="title_activity_form_lmf">LMF form</string>
+    <string name="title_activity_form_ptnquality">FormPTNQualityActivity</string>
 </resources>

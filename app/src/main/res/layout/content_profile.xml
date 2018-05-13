@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,6 +7,11 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.npkompleet.phenomenon.bowser.ProfileActivity"
     tools:showIn="@layout/activity_profile">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -27,6 +32,7 @@
                 android:layout_height="wrap_content"
                 android:text="Philip"
                 android:textSize="20sp"
+                android:id="@+id/profileView_firstName"
                 android:textColor="#111111"
                 android:layout_marginBottom="8dp"/>
 
@@ -40,16 +46,212 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Okonkwo"
+                android:id="@+id/profileView_lastName"
                 android:textSize="20sp"
                 android:textColor="#111111"/>
 
-            <android.support.v7.widget.SwitchCompat
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
 
 
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
 
-</LinearLayout>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CONTACTS"
+                android:textSize="10sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="pels@yahoo.com"
+                android:drawableStart="@drawable/ic_email"
+                android:drawablePadding="4dp"
+                android:textSize="20sp"
+                android:id="@+id/profileView_email"
+                android:textColor="#111111"
+                android:layout_marginBottom="8dp"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="08055553333"
+                android:drawableStart="@drawable/ic_phone"
+                android:drawablePadding="4dp"
+                android:id="@+id/profileView_number"
+                android:textSize="20sp"
+                android:textColor="#111111"/>
+
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GROUPS"
+                android:textSize="10sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Group 1"
+                android:drawableStart="@drawable/ic_group_black_24dp"
+                android:drawablePadding="4dp"
+                android:textSize="20sp"
+                android:textColor="#111111"
+                android:layout_marginBottom="8dp"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Group 2"
+                android:drawableStart="@drawable/ic_group_black_24dp"
+                android:drawablePadding="4dp"
+                android:textSize="20sp"
+                android:textColor="#111111"/>
+
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="COMPANIES"
+                android:textSize="10sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Company 1"
+                android:drawableStart="@drawable/ic_company"
+                android:drawablePadding="4dp"
+                android:textSize="20sp"
+                android:textColor="#111111"
+                android:layout_marginBottom="8dp"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Company 2"
+                android:drawableStart="@drawable/ic_company"
+                android:drawablePadding="4dp"
+                android:textSize="20sp"
+                android:textColor="#111111"/>
+
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LOCATIONS"
+                android:textSize="10sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Location 1"
+                android:drawableStart="@drawable/ic_location"
+                android:drawablePadding="4dp"
+                android:textSize="20sp"
+                android:textColor="#111111"
+                android:layout_marginBottom="8dp"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Location 2"
+                android:drawableStart="@drawable/ic_location"
+                android:drawablePadding="4dp"
+                android:textSize="20sp"
+                android:textColor="#111111"/>
+
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Status"
+                android:textSize="20sp"/>
+
+
+            <android.support.v7.widget.SwitchCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:layout_gravity="end"
+                android:id="@+id/profileView_status"/>
+
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</ScrollView>

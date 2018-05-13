@@ -4,17 +4,14 @@ package com.npkompleet.phenomenon.bowser.mvp.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class UserAccess {
+public class UserAccess extends Parameters{
 
-    @SerializedName("userId")
+    @SerializedName("fait_users_userid")
     @Expose
     private String userId;
-    @SerializedName("userPassword")
+    @SerializedName("fait_users_password")
     @Expose
     private String userPassword;
-    @SerializedName("type")
-    @Expose
-    private String type;
 
     /**
      * No args constructor for use in serialization
@@ -25,15 +22,13 @@ public class UserAccess {
 
     /**
      *
-     * @param userId
      * @param userPassword
-     * @param type
+     * @param userId
      */
-    public UserAccess(String userId, String userPassword, String type) {
+    public UserAccess(String userId, String userPassword) {
         super();
         this.userId = userId;
         this.userPassword = userPassword;
-        this.type = type;
     }
 
     public String getUserId() {
@@ -50,14 +45,6 @@ public class UserAccess {
 
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
 }

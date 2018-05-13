@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        app:showAsAction="ifRoom"
+        android:title="add"
+        android:id="@+id/menu_profile_add"
+        android:icon="@drawable/ic_person_add"/>
+
+    <item
+        app:showAsAction="ifRoom"
+        android:title="delete"
+        android:id="@+id/menu_profile_delete"
+        android:icon="@drawable/ic_delete"/>
+</menu>

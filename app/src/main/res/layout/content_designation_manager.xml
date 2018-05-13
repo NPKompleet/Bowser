@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.npkompleet.phenomenon.bowser.settings.UnitManagerActivity"
+    tools:showIn="@layout/activity_unit_manager">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp"
+                android:onClick="onUnitListItemClicked">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/unitManager_unitName"
+                        android:text="DESIGNATION 1"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#111111"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/unitManager_unitCode"
+                        android:layout_below="@+id/unitManager_unitName"
+                        android:text="UN0023"
+                        android:textSize="15sp"
+                        android:textColor="#111111"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_delete_red"
+                        android:id="@+id/unitManager_unitDelete"
+                        android:layout_alignParentEnd="true"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_mode_edit_green"
+                        android:id="@+id/unitManager_unitEdit"
+                        android:layout_toStartOf="@+id/unitManager_unitDelete"
+                        android:layout_marginEnd="4dp"/>
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#999999"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:id="@+id/unitManager_unit_shortDescription"
+                    android:text="Bacon ipsum dolor amet rump short ribs cupim, chuck beef jowl drumstick picanha capicola. Cupim leberkas kevin tongue, chicken ground round pig ball tip......"
+                    android:textSize="15sp" />
+
+                <com.npkompleet.phenomenon.bowser.customview.ExpandableRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/unitManager_unit_description"
+                    app:ael_duration="400"
+                    app:ael_expanded="false"
+                    app:ael_interpolator="linearOutSlowIn"
+                    app:ael_orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Bacon ipsum dolor amet rump short ribs cupim, chuck beef jowl drumstick picanha capicola. Cupim leberkas kevin tongue, chicken ground round pig ball tip. Short loin turducken alcatra rump porchetta shoulder. Beef ribs alcatra doner, prosciutto frankfurter bacon ham salami sirloin short loin. Boudin short loin filet mignon venison cow."
+                        android:textSize="15sp" />
+
+                </com.npkompleet.phenomenon.bowser.customview.ExpandableRelativeLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp"
+                android:onClick="onUnitListItemClicked">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/unitManager_unitName1"
+                        android:text="DESIGNATION 2"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#111111"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/unitManager_unitCode1"
+                        android:layout_below="@+id/unitManager_unitName1"
+                        android:text="UN0036"
+                        android:textSize="15sp"
+                        android:textColor="#111111"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_delete_red"
+                        android:id="@+id/unitManager_unitDelete1"
+                        android:layout_alignParentEnd="true"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_mode_edit_green"
+                        android:id="@+id/unitManager_unitEdit1"
+                        android:layout_toStartOf="@+id/unitManager_unitDelete1"
+                        android:layout_marginEnd="4dp"/>
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#999999"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:text="Bacon ipsum dolor amet rump short ribs cupim, chuck beef jowl drumstick picanha capicola. Cupim leberkas kevin tongue, chicken ground round pig ball tip......"
+                    android:textSize="15sp" />
+
+                <com.npkompleet.phenomenon.bowser.customview.ExpandableRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/unitManager_unit_description1"
+                    app:ael_duration="400"
+                    app:ael_expanded="false"
+                    app:ael_interpolator="linearOutSlowIn"
+                    app:ael_orientation="vertical">
+
+
+                </com.npkompleet.phenomenon.bowser.customview.ExpandableRelativeLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+    </LinearLayout>
+
+
+</ScrollView>

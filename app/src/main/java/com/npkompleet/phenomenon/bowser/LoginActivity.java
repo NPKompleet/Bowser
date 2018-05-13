@@ -5,67 +5,53 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.annotation.NonNull;
+import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.app.LoaderManager.LoaderCallbacks;
-
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.AsyncTask;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
+import android.support.v7.widget.PopupMenu;
 import android.text.TextUtils;
-import android.view.KeyEvent;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.npkompleet.phenomenon.bowser.bluetooth.BluetoothUtils;
+import com.npkompleet.phenomenon.bowser.mvp.models.Query;
+import com.npkompleet.phenomenon.bowser.mvp.models.QueryParameters;
+import com.npkompleet.phenomenon.bowser.mvp.models.Template;
 import com.npkompleet.phenomenon.bowser.mvp.models.User;
-import com.npkompleet.phenomenon.bowser.mvp.models.UserAccess;
+import com.npkompleet.phenomenon.bowser.mvp.models.UserQuery;
 import com.npkompleet.phenomenon.bowser.retrofit.MyApiEndpointInterface;
 import com.npkompleet.phenomenon.bowser.retrofit.RetrofitUtils;
+import com.squareup.picasso.Picasso;
 
-import org.reactivestreams.Subscriber;
-
-import java.util.ArrayList;
+import java.io.InputStream;
+import java.math.BigInteger;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.HttpException;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 
+import java.security.MessageDigest;
 
-import static android.Manifest.permission.READ_CONTACTS;
-import static com.npkompleet.phenomenon.bowser.retrofit.MyApiEndpointInterface.BASE_URL;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
  * A login screen that offers login via email/password.
@@ -81,14 +67,22 @@ public class LoginActivity extends AppCompatActivity{
     @BindView(R.id.email_login_form)
     View mLoginFormView;
 
+    @BindView(R.id.login_logo)
+    ImageView imageView;
+
+    @BindView(R.id.content_login)
+    RelativeLayout contentLogin;
+
     MyApiEndpointInterface myApi;
-    User user;
+    public static User user;
+
+    public static Bitmap LOGO=null;
+    public static String NAME;
+    public static String HEADER;
+    public static String FOOTER;
+    public static String WEBSITE;
 
 
-    /**
-     * Id to identity READ_CONTACTS permission request.
-     */
-    private static final int REQUEST_READ_CONTACTS = 0;
 
 
     @Override
@@ -96,125 +90,43 @@ public class LoginActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        Query templateQuery = new Query();
+        templateQuery.setMainTable("fait_settings");
+        templateQuery.setMethod("printTemplate");
+        /*Gson gson = new Gson();
+        String uaString = gson.toJson(templateQuery);
+        Toast.makeText(LoginActivity.this, uaString, Toast.LENGTH_SHORT).show();*/
+        MyApiEndpointInterface myApi= RetrofitUtils.getService();
+        Call<Template> call = myApi.getTemplate(templateQuery);
+        call.enqueue(new Callback<Template>() {
 
-        // Set up the login form.
-       /* mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        populateAutoComplete();
-
-        mPasswordView = (EditText) findViewById(R.id.password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    return true;
-                }
-                return false;
+            public void onResponse(Call<Template> call, Response<Template> response) {
+                Template template= response.body();
+                //Toast.makeText(LoginActivity.this, template.getLogo()+" "+ template.getHeader(), Toast.LENGTH_SHORT).show();
+                Picasso.with(LoginActivity.this).load("http://197.210.12.72:8080/fait/imports/configuration/" +template.getLogo2())
+                        .into(imageView);
+                //fetchLogo("http://197.210.12.72:8080/fait/imports/configuration/" +template.getLogo());
+                LoginActivity.DownloadImageWithURLTask downloadTask = new LoginActivity.DownloadImageWithURLTask();
+                downloadTask.execute("http://197.210.12.72:8080/fait/imports/configuration/" +template.getLogo());
+                NAME= template.getName();
+                HEADER= template.getHeader();
+                FOOTER= template.getFooter();
+                WEBSITE= template.getWebsiteLink();
+            }
+
+            @Override
+            public void onFailure(Call<Template> call, Throwable t) {
+
             }
         });
-
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                attemptLogin();
-            }
-        });
-
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);*/
     }
 
 
-    /*private boolean mayRequestContacts() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            return true;
-        }
-        if (checkSelfPermission(READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        }
-        if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
-            Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
-                    .setAction(android.R.string.ok, new View.OnClickListener() {
-                        @Override
-                        @TargetApi(Build.VERSION_CODES.M)
-                        public void onClick(View v) {
-                            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-                        }
-                    });
-        } else {
-            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-        }
-        return false;
-    }
-*/
-    /**
-     * Callback received when a permissions request has been completed.
-     */
-    /*@Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        if (requestCode == REQUEST_READ_CONTACTS) {
-            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                populateAutoComplete();
-            }
-        }
-    }*/
 
 
-    /**
-     * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
-     */
-    /*private void attemptLogin() {
-        if (mAuthTask != null) {
-            return;
-        }
 
-        // Reset errors.
-        mEmailView.setError(null);
-        mPasswordView.setError(null);
-
-        // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
-
-        boolean cancel = false;
-        View focusView = null;
-
-        // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = mPasswordView;
-            cancel = true;
-        }
-
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
-            cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
-            cancel = true;
-        }
-
-        if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
-            focusView.requestFocus();
-        } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
-        }
-    }*/
-
-
+    //checks if the email or password fields are empty
     private boolean anyFieldIsEmpty(){
         return  (TextUtils.isEmpty(mEmailView.getText().toString()) || TextUtils.isEmpty(mPasswordView.getText().toString()));
     }
@@ -256,6 +168,9 @@ public class LoginActivity extends AppCompatActivity{
         }
     }
 
+
+
+    //when sign in button is clicked
     @OnClick(R.id.email_sign_in_button)
     public void onClick(){
 
@@ -277,34 +192,58 @@ public class LoginActivity extends AppCompatActivity{
 
 
         myApi= RetrofitUtils.getService();
+        String hack="";
 
-        UserAccess access= new UserAccess(mEmailView.getText().toString(), mPasswordView.getText().toString(), "login");
+        try {
+            hack=md5(mPasswordView.getText().toString());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
 
-        //Call<User> call = myApi.loginUser(mEmailView.getText().toString(), mPasswordView.getText().toString(), "login");
-        Call<User> call = myApi.loginUser(access);
-        //Toast.makeText(this, "text", Toast.LENGTH_SHORT).show();
+        //UserQuery.UserWhereValues uAccess= new UserQuery.UserWhereValues(mEmailView.getText().toString(), hack );
+        UserQuery userQuery= new UserQuery();
+        userQuery.setMainTable("fait_users");
+        //userQuery.setMethod("search");
+        //userQuery.setJoinArrayParameters(new QueryParameters.JoinArrayParameters());
+        //userQuery.setWherein(new QueryParameters.Wherein());
+        //userQuery.setSelectValues(new QueryParameters.SelectValues());
+        userQuery.setWhereValues(userQuery.new UserWhereValues(mEmailView.getText().toString(), hack));
+        //userQuery.setOrdersBy(new QueryParameters.OrdersBy());
 
-        call.enqueue(new Callback<User>(){
+        /*Gson gson = new Gson();
+        String uaString = gson.toJson(userQuery);
+        Toast.makeText(LoginActivity.this, uaString, Toast.LENGTH_SHORT).show();*/
+
+
+        Call<List<User>> call = myApi.loginUser(userQuery);
+
+
+        call.enqueue(new Callback<List<User>>(){
 
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
+            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                 //int statusCode = response.code();
-                user = response.body();
-                Toast.makeText(LoginActivity.this, user.getMessage(), Toast.LENGTH_SHORT).show();
+                try{
+                    user = response.body().get(0);
 
-                if (user.getStatus().equals("1") && user.getUserInfo().getUserStatus().equals("Active")){
-                    Snackbar.make(mLoginFormView, user.getMessage(), Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
-                    startMenuActivity(user);
-                }else{
-                    mProgressView.setVisibility(View.GONE);
-                    Snackbar.make(mLoginFormView, "Wrong Email or Password", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                    //Toast.makeText(LoginActivity.this, user.getStatus(), Toast.LENGTH_SHORT).show();
+
+                    if (user.getStatus().equals("Activated")){
+                        Snackbar.make(mLoginFormView, "logging in...", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                        startMenuActivity(user);
+                    }else{
+                        mProgressView.setVisibility(View.GONE);
+                        Snackbar.make(mLoginFormView, "Wrong Email or Password", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                    }
+                }catch (Exception e){
+                    Toast.makeText(LoginActivity.this, "Something went wrong. Try again", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(Call<List<User>> call, Throwable t) {
                 mProgressView.setVisibility(View.GONE);
                 Toast.makeText(LoginActivity.this, "Something went wrong. Try again", Toast.LENGTH_SHORT).show();
                 t.printStackTrace();
@@ -312,13 +251,10 @@ public class LoginActivity extends AppCompatActivity{
             }
         });
 
-
-
-
-
     }
 
 
+    //starts the menu activity
     public void startMenuActivity(User user){
         Intent intent= new Intent(this, MenuActivity.class);
         intent.putExtra("user", user);
@@ -326,11 +262,52 @@ public class LoginActivity extends AppCompatActivity{
         finish();
     }
 
+    //converts any string to its MD5 hash
+    private static String md5(String data) throws NoSuchAlgorithmException {
+        // Get the algorithm:
+        MessageDigest md5 = MessageDigest.getInstance("MD5");
+        // Calculate Message Digest as bytes:
+        byte[] digest = md5.digest(data.getBytes(UTF_8));
+        // Convert to 32-char long String:
+        return String.format("%032x", new BigInteger(1, digest));
+    }
+
+    //checks for network and internet
     public boolean networkActive() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = cm.getActiveNetworkInfo();
         return networkInfo != null && networkInfo.isConnected();
     }
+
+
+    public static void setLOGO(Bitmap LOGO) {
+        LoginActivity.LOGO = LOGO;
+    }
+
+
+    private static class DownloadImageWithURLTask extends AsyncTask<String, Void, Bitmap> {
+
+        public DownloadImageWithURLTask() {
+
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String pathToFile = urls[0];
+            Bitmap bitmap = null;
+            try {
+                InputStream in = new java.net.URL(pathToFile).openStream();
+                bitmap = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return bitmap;
+        }
+        protected void onPostExecute(Bitmap result) {
+            setLOGO(result);
+        }
+    }
+
 
 
 }

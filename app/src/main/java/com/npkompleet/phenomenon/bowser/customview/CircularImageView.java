@@ -23,7 +23,7 @@ import com.npkompleet.phenomenon.bowser.R;
 public class CircularImageView extends ImageView {
     private static final ScaleType SCALE_TYPE = ScaleType.CENTER_CROP;
 
-    // Default Values
+    // Default ValueArray
     private static final float DEFAULT_BORDER_WIDTH = 4;
     private static final float DEFAULT_SHADOW_RADIUS = 8.0f;
 

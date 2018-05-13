@@ -3,439 +3,601 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.npkompleet.phenomenon.bowser.LoginActivity">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/login_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/aero2" />
+        android:scaleType="centerCrop" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:text=""
-        android:textColor="#000044"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:id="@+id/menuview_welcome"/>
+    <!--android:src="@drawable/aero2"-->
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-
-    <RelativeLayout
-        android:id="@+id/menu_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="100dp">
-
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingTop="60dp">
+            tools:context="com.npkompleet.phenomenon.bowser.LoginActivity">
 
-            <LinearLayout
+
+            <TextView
+                android:id="@+id/menuview_welcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"
+                android:text=""
+                android:textColor="#000044"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+
+
+            <RelativeLayout
+                android:id="@+id/menu_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="30dp"
-                android:layout_marginStart="30dp"
-                android:alpha="0.7"
-                android:background="#dddddd"
-                android:orientation="vertical"
-                android:paddingTop="90dp">
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="100dp">
 
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    android:layout_marginBottom="1dp"
-                    android:alpha="0.95"
-                    android:background="#ffffff"
-                    android:drawableEnd="@drawable/ic_expand_black"
-                    android:drawablePadding="15dp"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:paddingEnd="10dp"
-                    android:paddingStart="10dp"
-                    android:text="Operations"
-                    android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:textSize="24sp"
-                    android:onClick="showOperationsOptions"/>
-
-                <com.npkompleet.phenomenon.bowser.customview.ExpandableRelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:alpha="0.95"
-                    android:id="@+id/menuview_operations"
-                    android:background="#cccccc"
-                    app:ael_duration="400"
-                    app:ael_expanded="false"
-                    app:ael_interpolator="linearOutSlowIn"
-                    app:ael_orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingTop="60dp">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="1dp"
-                        android:alpha="0.95"
-                        android:background="#ffffff"
-                        android:drawableEnd="@drawable/ic_chevron_right"
-                        android:drawablePadding="15dp"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:paddingEnd="20dp"
-                        android:paddingStart="20dp"
-                        android:text="Loading"
-                        android:textAlignment="center"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:id="@+id/menuview_operations_loading"
-                        android:paddingTop="1dp"
-                        android:paddingBottom="1dp"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="30dp"
+                        android:layout_marginStart="30dp"
+                        android:alpha="0.7"
+                        android:background="#dddddd"
+                        android:orientation="vertical"
+                        android:paddingTop="90dp">
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="65dp"
+                            android:id="@+id/form_menu_adi"
+                            android:layout_marginBottom="1dp"
+                            android:alpha="0.95"
+                            android:background="#ffffff"
+                            android:drawableEnd="@drawable/ic_expand_black"
+                            android:drawablePadding="15dp"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:onClick="showForm"
+                            android:paddingEnd="10dp"
+                            android:paddingStart="10dp"
+                            android:text="ADI"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:textSize="24sp" />
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="65dp"
+                            android:id="@+id/form_menu_ptn"
+                            android:layout_marginBottom="1dp"
+                            android:alpha="0.95"
+                            android:background="#ffffff"
+                            android:drawableEnd="@drawable/ic_expand_black"
+                            android:drawablePadding="15dp"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:onClick="showForm"
+                            android:paddingEnd="10dp"
+                            android:paddingStart="10dp"
+                            android:text="PTN"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:textSize="24sp" />
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="65dp"
+                            android:id="@+id/form_menu_lmf"
+                            android:layout_marginBottom="1dp"
+                            android:alpha="0.95"
+                            android:background="#ffffff"
+                            android:drawableEnd="@drawable/ic_expand_black"
+                            android:drawablePadding="15dp"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:onClick="showForm"
+                            android:paddingEnd="10dp"
+                            android:paddingStart="10dp"
+                            android:text="LMF"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:textSize="24sp" />
+
+                        <!--<Button-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="65dp"-->
+                            <!--android:layout_marginBottom="1dp"-->
+                            <!--android:alpha="0.95"-->
+                            <!--android:background="#ffffff"-->
+                            <!--android:drawableEnd="@drawable/ic_expand_black"-->
+                            <!--android:drawablePadding="15dp"-->
+                            <!--android:gravity="center"-->
+                            <!--android:maxLines="1"-->
+                            <!--android:onClick="showOperationsOptions"-->
+                            <!--android:paddingEnd="10dp"-->
+                            <!--android:paddingStart="10dp"-->
+                            <!--android:text="Operations"-->
+                            <!--android:textAlignment="center"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:textSize="24sp" />-->
+
+                        <!--<com.npkompleet.phenomenon.bowser.customview.ExpandableRelativeLayout-->
+                            <!--android:id="@+id/menuview_operations"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:alpha="0.95"-->
+                            <!--android:background="#cccccc"-->
+                            <!--app:ael_duration="400"-->
+                            <!--app:ael_expanded="false"-->
+                            <!--app:ael_interpolator="linearOutSlowIn"-->
+                            <!--app:ael_orientation="vertical">-->
+
+                            <!--<TextView-->
+                                <!--android:id="@+id/menuview_operations_customer"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="50dp"-->
+                                <!--android:layout_marginBottom="1dp"-->
+                                <!--android:alpha="0.95"-->
+                                <!--android:background="#ffffff"-->
+                                <!--android:drawableEnd="@drawable/ic_chevron_right"-->
+                                <!--android:drawablePadding="15dp"-->
+                                <!--android:gravity="center"-->
+                                <!--android:maxLines="1"-->
+                                <!--android:paddingBottom="1dp"-->
+                                <!--android:paddingEnd="20dp"-->
+                                <!--android:paddingStart="20dp"-->
+                                <!--android:paddingTop="1dp"-->
+                                <!--android:text="Customer"-->
+                                <!--android:textAlignment="center"-->
+                                <!--android:textColor="#000000"-->
+                                <!--android:textSize="20sp" />-->
 
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="1dp"
-                        android:alpha="0.95"
-                        android:background="#ffffff"
-                        android:drawableEnd="@drawable/ic_chevron_right"
-                        android:drawablePadding="15dp"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:paddingEnd="20dp"
-                        android:paddingStart="20dp"
-                        android:text="Transfers"
-                        android:textAlignment="center"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:id="@+id/menuview_operations_transfers"
-                        android:layout_below="@+id/menuview_operations_loading"
-                        android:paddingTop="1dp"
-                        android:paddingBottom="1dp"/>
+                            <!--<TextView-->
+                                <!--android:id="@+id/menuview_operations_dispenseLocation"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="50dp"-->
+                                <!--android:layout_below="@+id/menuview_operations_customer"-->
+                                <!--android:layout_marginBottom="1dp"-->
+                                <!--android:alpha="0.95"-->
+                                <!--android:background="#ffffff"-->
+                                <!--android:drawableEnd="@drawable/ic_chevron_right"-->
+                                <!--android:drawablePadding="15dp"-->
+                                <!--android:gravity="center"-->
+                                <!--android:maxLines="1"-->
+                                <!--android:paddingBottom="1dp"-->
+                                <!--android:paddingEnd="20dp"-->
+                                <!--android:paddingStart="20dp"-->
+                                <!--android:paddingTop="1dp"-->
+                                <!--android:text="Dispense Locations"-->
+                                <!--android:textAlignment="center"-->
+                                <!--android:textColor="#000000"-->
+                                <!--android:textSize="20sp" />-->
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="1dp"
-                        android:alpha="0.95"
-                        android:background="#ffffff"
-                        android:drawableEnd="@drawable/ic_chevron_right"
-                        android:drawablePadding="15dp"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:paddingEnd="20dp"
-                        android:paddingStart="20dp"
-                        android:text="Drains"
-                        android:textAlignment="center"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:id="@+id/menuview_operations_drains"
-                        android:layout_below="@+id/menuview_operations_transfers"
-                        android:paddingTop="1dp"
-                        android:paddingBottom="1dp"/>
+                            <!--<TextView-->
+                                <!--android:id="@+id/menuview_operations_trucks"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="50dp"-->
+                                <!--android:layout_below="@+id/menuview_operations_dispenseLocation"-->
+                                <!--android:layout_marginBottom="1dp"-->
+                                <!--android:alpha="0.95"-->
+                                <!--android:background="#ffffff"-->
+                                <!--android:drawableEnd="@drawable/ic_chevron_right"-->
+                                <!--android:drawablePadding="15dp"-->
+                                <!--android:gravity="center"-->
+                                <!--android:maxLines="1"-->
+                                <!--android:paddingBottom="1dp"-->
+                                <!--android:paddingEnd="20dp"-->
+                                <!--android:paddingStart="20dp"-->
+                                <!--android:paddingTop="1dp"-->
+                                <!--android:text="Trucks"-->
+                                <!--android:textAlignment="center"-->
+                                <!--android:textColor="#000000"-->
+                                <!--android:textSize="20sp" />-->
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="1dp"
-                        android:alpha="0.95"
-                        android:background="#ffffff"
-                        android:drawableEnd="@drawable/ic_chevron_right"
-                        android:drawablePadding="15dp"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:paddingEnd="20dp"
-                        android:paddingStart="20dp"
-                        android:text="Dispense"
-                        android:textAlignment="center"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:id="@+id/menuview_operations_dispense"
-                        android:layout_below="@+id/menuview_operations_drains"
-                        android:paddingTop="1dp"
-                        android:paddingBottom="1dp"
-                        android:onClick="onOperationsOptionSelected"/>
-
-                </com.npkompleet.phenomenon.bowser.customview.ExpandableRelativeLayout>
+                            <!--<TextView-->
+                                <!--android:id="@+id/menuview_operations_product"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="50dp"-->
+                                <!--android:layout_below="@+id/menuview_operations_trucks"-->
+                                <!--android:layout_marginBottom="1dp"-->
+                                <!--android:alpha="0.95"-->
+                                <!--android:background="#ffffff"-->
+                                <!--android:drawableEnd="@drawable/ic_chevron_right"-->
+                                <!--android:drawablePadding="15dp"-->
+                                <!--android:gravity="center"-->
+                                <!--android:maxLines="1"-->
+                                <!--android:onClick="onOperationsOptionSelected"-->
+                                <!--android:paddingBottom="1dp"-->
+                                <!--android:paddingEnd="20dp"-->
+                                <!--android:paddingStart="20dp"-->
+                                <!--android:paddingTop="1dp"-->
+                                <!--android:text="Product"-->
+                                <!--android:textAlignment="center"-->
+                                <!--android:textColor="#000000"-->
+                                <!--android:textSize="20sp" />-->
 
 
-
-                <!--<TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="1dp"
-                    android:alpha="0.95"
-                    android:background="#ffffff"
-                    android:drawableEnd="@drawable/ic_chevron_right"
-                    android:drawablePadding="15dp"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:paddingEnd="10dp"
-                    android:text="Transactions"
-                    android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:textSize="24sp"
-                    android:id="@+id/menuview_transactions"/>-->
-
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    android:layout_marginBottom="1dp"
-                    android:alpha="0.95"
-                    android:background="#ffffff"
-                    android:drawableEnd="@drawable/expand_anim"
-                    android:drawablePadding="15dp"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:paddingEnd="10dp"
-                    android:paddingStart="10dp"
-                    android:text="Reports"
-                    android:id="@+id/menuview_reports_button"
-                    android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:textSize="24sp"
-                    android:textStyle="normal"
-                    android:onClick="showReportOptions"/>
-
-                <com.npkompleet.phenomenon.bowser.customview.ExpandableRelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:alpha="0.95"
-                    android:id="@+id/menuview_reports"
-                    android:background="#cccccc"
-                    app:ael_duration="400"
-                    app:ael_expanded="false"
-                    app:ael_interpolator="linearOutSlowIn"
-                    app:ael_orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="1dp"
-                        android:alpha="0.95"
-                        android:background="#ffffff"
-                        android:drawableEnd="@drawable/ic_chevron_right"
-                        android:drawablePadding="15dp"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:paddingEnd="20dp"
-                        android:paddingStart="20dp"
-                        android:text="All"
-                        android:textAlignment="center"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:id="@+id/menuview_reports_all"
-                        android:paddingTop="1dp"
-                        android:paddingBottom="1dp"/>
+                            <!--<TextView-->
+                                <!--android:id="@+id/menuview_operations_tanks"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="50dp"-->
+                                <!--android:layout_below="@+id/menuview_operations_product"-->
+                                <!--android:layout_marginBottom="1dp"-->
+                                <!--android:alpha="0.95"-->
+                                <!--android:background="#ffffff"-->
+                                <!--android:drawableEnd="@drawable/ic_chevron_right"-->
+                                <!--android:drawablePadding="15dp"-->
+                                <!--android:gravity="center"-->
+                                <!--android:maxLines="1"-->
+                                <!--android:onClick="onOperationsOptionSelected"-->
+                                <!--android:paddingBottom="1dp"-->
+                                <!--android:paddingEnd="20dp"-->
+                                <!--android:paddingStart="20dp"-->
+                                <!--android:paddingTop="1dp"-->
+                                <!--android:text="Tanks"-->
+                                <!--android:textAlignment="center"-->
+                                <!--android:textColor="#000000"-->
+                                <!--android:textSize="20sp" />-->
 
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="1dp"
-                        android:alpha="0.95"
-                        android:background="#ffffff"
-                        android:drawableEnd="@drawable/ic_chevron_right"
-                        android:drawablePadding="15dp"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:paddingEnd="20dp"
-                        android:paddingStart="20dp"
-                        android:text="Loading"
-                        android:textAlignment="center"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:id="@+id/menuview_reports_loading"
-                        android:layout_below="@+id/menuview_reports_all"
-                        android:paddingTop="1dp"
-                        android:paddingBottom="1dp"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="1dp"
-                        android:alpha="0.95"
-                        android:background="#ffffff"
-                        android:drawableEnd="@drawable/ic_chevron_right"
-                        android:drawablePadding="15dp"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:paddingEnd="20dp"
-                        android:paddingStart="20dp"
-                        android:text="Transfers"
-                        android:textAlignment="center"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:id="@+id/menuview_reports_transfers"
-                        android:layout_below="@+id/menuview_reports_loading"
-                        android:paddingTop="1dp"
-                        android:paddingBottom="1dp"/>
-
-                </com.npkompleet.phenomenon.bowser.customview.ExpandableRelativeLayout>
+                            <!--<TextView-->
+                                <!--android:id="@+id/menuview_operations_bowsers"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="50dp"-->
+                                <!--android:layout_below="@+id/menuview_operations_tanks"-->
+                                <!--android:layout_marginBottom="1dp"-->
+                                <!--android:alpha="0.95"-->
+                                <!--android:background="#ffffff"-->
+                                <!--android:drawableEnd="@drawable/ic_chevron_right"-->
+                                <!--android:drawablePadding="15dp"-->
+                                <!--android:gravity="center"-->
+                                <!--android:maxLines="1"-->
+                                <!--android:onClick="onOperationsOptionSelected"-->
+                                <!--android:paddingBottom="1dp"-->
+                                <!--android:paddingEnd="20dp"-->
+                                <!--android:paddingStart="20dp"-->
+                                <!--android:paddingTop="1dp"-->
+                                <!--android:text="Bowsers"-->
+                                <!--android:textAlignment="center"-->
+                                <!--android:textColor="#000000"-->
+                                <!--android:textSize="20sp" />-->
 
 
-                <!--<TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="1dp"
-                    android:alpha="0.95"
-                    android:background="#ffffff"
-                    android:drawableEnd="@drawable/ic_chevron_right"
-                    android:drawablePadding="15dp"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:paddingEnd="10dp"
-                    android:text="Task Manager"
-                    android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:textSize="24sp"
-                    android:id="@+id/menuview_task_manager"/>-->
+                            <!--<TextView-->
+                                <!--android:id="@+id/menuview_operations_forms"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="50dp"-->
+                                <!--android:layout_below="@+id/menuview_operations_bowsers"-->
+                                <!--android:layout_marginBottom="1dp"-->
+                                <!--android:alpha="0.95"-->
+                                <!--android:background="#ffffff"-->
+                                <!--android:drawableEnd="@drawable/ic_chevron_right"-->
+                                <!--android:drawablePadding="15dp"-->
+                                <!--android:gravity="center"-->
+                                <!--android:maxLines="1"-->
+                                <!--android:onClick="onOperationsOptionSelected"-->
+                                <!--android:paddingBottom="1dp"-->
+                                <!--android:paddingEnd="20dp"-->
+                                <!--android:paddingStart="20dp"-->
+                                <!--android:paddingTop="1dp"-->
+                                <!--android:text="Forms"-->
+                                <!--android:textAlignment="center"-->
+                                <!--android:textColor="#000000"-->
+                                <!--android:textSize="20sp" />-->
+
+                        <!--</com.npkompleet.phenomenon.bowser.customview.ExpandableRelativeLayout>-->
 
 
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    android:layout_marginBottom="1dp"
-                    android:alpha="0.95"
-                    android:background="#ffffff"
-                    android:drawableEnd="@drawable/ic_expand_black"
-                    android:drawablePadding="15dp"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:paddingEnd="10dp"
-                    android:paddingStart="10dp"
-                    android:text="Settings"
-                    android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:textSize="24sp"
-                    android:onClick="showSettingsOptions"/>
+                        <!--<Button-->
+                            <!--android:id="@+id/menuview_reports_button"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="65dp"-->
+                            <!--android:layout_marginBottom="1dp"-->
+                            <!--android:alpha="0.95"-->
+                            <!--android:background="#ffffff"-->
+                            <!--android:drawableEnd="@drawable/expand_anim"-->
+                            <!--android:drawablePadding="15dp"-->
+                            <!--android:gravity="center"-->
+                            <!--android:maxLines="1"-->
+                            <!--android:onClick="showReportOptions"-->
+                            <!--android:paddingEnd="10dp"-->
+                            <!--android:paddingStart="10dp"-->
+                            <!--android:text="Reports"-->
+                            <!--android:textAlignment="center"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:textSize="24sp"-->
+                            <!--android:textStyle="normal" />-->
 
-                <com.npkompleet.phenomenon.bowser.customview.ExpandableRelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:alpha="0.95"
-                    android:id="@+id/menuview_settings"
-                    android:background="#cccccc"
-                    app:ael_duration="400"
-                    app:ael_expanded="false"
-                    app:ael_interpolator="linearOutSlowIn"
-                    app:ael_orientation="vertical">
+                        <!--<com.npkompleet.phenomenon.bowser.customview.ExpandableRelativeLayout-->
+                            <!--android:id="@+id/menuview_reports"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:alpha="0.95"-->
+                            <!--android:background="#cccccc"-->
+                            <!--app:ael_duration="400"-->
+                            <!--app:ael_expanded="false"-->
+                            <!--app:ael_interpolator="linearOutSlowIn"-->
+                            <!--app:ael_orientation="vertical">-->
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="1dp"
-                        android:alpha="0.95"
-                        android:background="#ffffff"
-                        android:drawableEnd="@drawable/ic_chevron_right"
-                        android:drawablePadding="15dp"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:paddingEnd="20dp"
-                        android:paddingStart="20dp"
-                        android:text="User Manager"
-                        android:textAlignment="center"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:id="@+id/menuview_settings_userSettings"
-                        android:paddingTop="1dp"
-                        android:paddingBottom="1dp"
-                        android:onClick="onSettingsOptionSelected"/>
-
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="1dp"
-                        android:alpha="0.95"
-                        android:background="#ffffff"
-                        android:drawableEnd="@drawable/ic_chevron_right"
-                        android:drawablePadding="15dp"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:paddingEnd="20dp"
-                        android:paddingStart="20dp"
-                        android:text="Group Manager"
-                        android:textAlignment="center"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:id="@+id/menuview_settings_groupSettings"
-                        android:layout_below="@+id/menuview_settings_userSettings"
-                        android:paddingTop="1dp"
-                        android:paddingBottom="1dp"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="1dp"
-                        android:alpha="0.95"
-                        android:background="#ffffff"
-                        android:drawableEnd="@drawable/ic_chevron_right"
-                        android:drawablePadding="15dp"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:paddingEnd="20dp"
-                        android:paddingStart="20dp"
-                        android:text="System Manager"
-                        android:textAlignment="center"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:id="@+id/menuview_settings_systemSettings"
-                        android:layout_below="@+id/menuview_settings_groupSettings"
-                        android:paddingTop="1dp"
-                        android:paddingBottom="1dp"/>
-
-                </com.npkompleet.phenomenon.bowser.customview.ExpandableRelativeLayout>
+                            <!--<TextView-->
+                                <!--android:id="@+id/menuview_reports_all"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="50dp"-->
+                                <!--android:layout_marginBottom="1dp"-->
+                                <!--android:alpha="0.95"-->
+                                <!--android:background="#ffffff"-->
+                                <!--android:drawableEnd="@drawable/ic_chevron_right"-->
+                                <!--android:drawablePadding="15dp"-->
+                                <!--android:gravity="center"-->
+                                <!--android:maxLines="1"-->
+                                <!--android:paddingBottom="1dp"-->
+                                <!--android:paddingEnd="20dp"-->
+                                <!--android:paddingStart="20dp"-->
+                                <!--android:paddingTop="1dp"-->
+                                <!--android:text="All"-->
+                                <!--android:textAlignment="center"-->
+                                <!--android:textColor="#000000"-->
+                                <!--android:textSize="20sp" />-->
 
 
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    android:layout_marginBottom="1dp"
-                    android:alpha="0.95"
-                    android:background="#ffffff"
-                    android:drawableEnd="@drawable/ic_chevron_right"
-                    android:drawablePadding="15dp"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:paddingEnd="10dp"
-                    android:paddingStart="10dp"
-                    android:text="Profile"
-                    android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:textSize="24sp"
-                    android:onClick="showProfileActivity"/>
+                            <!--<TextView-->
+                                <!--android:id="@+id/menuview_reports_loading"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="50dp"-->
+                                <!--android:layout_below="@+id/menuview_reports_all"-->
+                                <!--android:layout_marginBottom="1dp"-->
+                                <!--android:alpha="0.95"-->
+                                <!--android:background="#ffffff"-->
+                                <!--android:drawableEnd="@drawable/ic_chevron_right"-->
+                                <!--android:drawablePadding="15dp"-->
+                                <!--android:gravity="center"-->
+                                <!--android:maxLines="1"-->
+                                <!--android:paddingBottom="1dp"-->
+                                <!--android:paddingEnd="20dp"-->
+                                <!--android:paddingStart="20dp"-->
+                                <!--android:paddingTop="1dp"-->
+                                <!--android:text="Loading"-->
+                                <!--android:textAlignment="center"-->
+                                <!--android:textColor="#000000"-->
+                                <!--android:textSize="20sp" />-->
+
+                            <!--<TextView-->
+                                <!--android:id="@+id/menuview_reports_transfers"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="50dp"-->
+                                <!--android:layout_below="@+id/menuview_reports_loading"-->
+                                <!--android:layout_marginBottom="1dp"-->
+                                <!--android:alpha="0.95"-->
+                                <!--android:background="#ffffff"-->
+                                <!--android:drawableEnd="@drawable/ic_chevron_right"-->
+                                <!--android:drawablePadding="15dp"-->
+                                <!--android:gravity="center"-->
+                                <!--android:maxLines="1"-->
+                                <!--android:paddingBottom="1dp"-->
+                                <!--android:paddingEnd="20dp"-->
+                                <!--android:paddingStart="20dp"-->
+                                <!--android:paddingTop="1dp"-->
+                                <!--android:text="Transfers"-->
+                                <!--android:textAlignment="center"-->
+                                <!--android:textColor="#000000"-->
+                                <!--android:textSize="20sp" />-->
+
+                        <!--</com.npkompleet.phenomenon.bowser.customview.ExpandableRelativeLayout>-->
 
 
-            </LinearLayout>
-        </LinearLayout>
+                        <!--&lt;!&ndash;<TextView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="50dp"-->
+                            <!--android:layout_marginBottom="1dp"-->
+                            <!--android:alpha="0.95"-->
+                            <!--android:background="#ffffff"-->
+                            <!--android:drawableEnd="@drawable/ic_chevron_right"-->
+                            <!--android:drawablePadding="15dp"-->
+                            <!--android:gravity="center"-->
+                            <!--android:maxLines="1"-->
+                            <!--android:paddingEnd="10dp"-->
+                            <!--android:text="Task Manager"-->
+                            <!--android:textAlignment="center"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:textSize="24sp"-->
+                            <!--android:id="@+id/menuview_task_manager"/>&ndash;&gt;-->
 
-        <com.npkompleet.phenomenon.bowser.customview.CircularImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_centerHorizontal="true"
-            android:alpha="0.9"
-            app:civ_border="true"
-            app:civ_border_width="2dp"
-            app:civ_shadow="false"
-            android:id="@+id/menuview_profilepic"
-            android:onClick="showProfileActivity"/>
 
-    </RelativeLayout>
+                        <!--<Button-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="65dp"-->
+                            <!--android:layout_marginBottom="1dp"-->
+                            <!--android:alpha="0.95"-->
+                            <!--android:background="#ffffff"-->
+                            <!--android:drawableEnd="@drawable/ic_expand_black"-->
+                            <!--android:drawablePadding="15dp"-->
+                            <!--android:gravity="center"-->
+                            <!--android:maxLines="1"-->
+                            <!--android:onClick="showSettingsOptions"-->
+                            <!--android:paddingEnd="10dp"-->
+                            <!--android:paddingStart="10dp"-->
+                            <!--android:text="Settings"-->
+                            <!--android:textAlignment="center"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:textSize="24sp" />-->
+
+                        <!--<com.npkompleet.phenomenon.bowser.customview.ExpandableRelativeLayout-->
+                            <!--android:id="@+id/menuview_settings"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:alpha="0.95"-->
+                            <!--android:background="#cccccc"-->
+                            <!--app:ael_duration="400"-->
+                            <!--app:ael_expanded="false"-->
+                            <!--app:ael_interpolator="linearOutSlowIn"-->
+                            <!--app:ael_orientation="vertical">-->
+
+                            <!--<TextView-->
+                                <!--android:id="@+id/menuview_settings_userSettings"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="50dp"-->
+                                <!--android:layout_marginBottom="1dp"-->
+                                <!--android:alpha="0.95"-->
+                                <!--android:background="#ffffff"-->
+                                <!--android:drawableEnd="@drawable/ic_chevron_right"-->
+                                <!--android:drawablePadding="15dp"-->
+                                <!--android:gravity="center"-->
+                                <!--android:maxLines="1"-->
+                                <!--android:onClick="onSettingsOptionSelected"-->
+                                <!--android:paddingBottom="1dp"-->
+                                <!--android:paddingEnd="20dp"-->
+                                <!--android:paddingStart="20dp"-->
+                                <!--android:paddingTop="1dp"-->
+                                <!--android:text="User Manager"-->
+                                <!--android:textAlignment="center"-->
+                                <!--android:textColor="#000000"-->
+                                <!--android:textSize="20sp" />-->
+
+                            <!--<TextView-->
+                                <!--android:id="@+id/menuview_settings_companySettings"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="50dp"-->
+                                <!--android:layout_below="@+id/menuview_settings_userSettings"-->
+                                <!--android:layout_marginBottom="1dp"-->
+                                <!--android:alpha="0.95"-->
+                                <!--android:background="#ffffff"-->
+                                <!--android:drawableEnd="@drawable/ic_chevron_right"-->
+                                <!--android:drawablePadding="15dp"-->
+                                <!--android:gravity="center"-->
+                                <!--android:maxLines="1"-->
+                                <!--android:onClick="onSettingsOptionSelected"-->
+                                <!--android:paddingBottom="1dp"-->
+                                <!--android:paddingEnd="20dp"-->
+                                <!--android:paddingStart="20dp"-->
+                                <!--android:paddingTop="1dp"-->
+                                <!--android:text="Company"-->
+                                <!--android:textAlignment="center"-->
+                                <!--android:textColor="#000000"-->
+                                <!--android:textSize="20sp" />-->
+
+
+                            <!--<TextView-->
+                                <!--android:id="@+id/menuview_settings_unitSettings"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="50dp"-->
+                                <!--android:layout_below="@+id/menuview_settings_companySettings"-->
+                                <!--android:layout_marginBottom="1dp"-->
+                                <!--android:alpha="0.95"-->
+                                <!--android:background="#ffffff"-->
+                                <!--android:drawableEnd="@drawable/ic_chevron_right"-->
+                                <!--android:drawablePadding="15dp"-->
+                                <!--android:gravity="center"-->
+                                <!--android:maxLines="1"-->
+                                <!--android:onClick="onSettingsOptionSelected"-->
+                                <!--android:paddingBottom="1dp"-->
+                                <!--android:paddingEnd="20dp"-->
+                                <!--android:paddingStart="20dp"-->
+                                <!--android:paddingTop="1dp"-->
+                                <!--android:text="Unit"-->
+                                <!--android:textAlignment="center"-->
+                                <!--android:textColor="#000000"-->
+                                <!--android:textSize="20sp" />-->
+
+
+                            <!--<TextView-->
+                                <!--android:id="@+id/menuview_settings_designationSettings"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="50dp"-->
+                                <!--android:layout_below="@+id/menuview_settings_unitSettings"-->
+                                <!--android:layout_marginBottom="1dp"-->
+                                <!--android:alpha="0.95"-->
+                                <!--android:background="#ffffff"-->
+                                <!--android:drawableEnd="@drawable/ic_chevron_right"-->
+                                <!--android:drawablePadding="15dp"-->
+                                <!--android:gravity="center"-->
+                                <!--android:maxLines="1"-->
+                                <!--android:onClick="onSettingsOptionSelected"-->
+                                <!--android:paddingBottom="1dp"-->
+                                <!--android:paddingEnd="20dp"-->
+                                <!--android:paddingStart="20dp"-->
+                                <!--android:paddingTop="1dp"-->
+                                <!--android:text="Designation"-->
+                                <!--android:textAlignment="center"-->
+                                <!--android:textColor="#000000"-->
+                                <!--android:textSize="20sp" />-->
+
+
+                            <!--<TextView-->
+                                <!--android:id="@+id/menuview_settings_groupSettings"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="50dp"-->
+                                <!--android:layout_below="@+id/menuview_settings_designationSettings"-->
+                                <!--android:onClick="onSettingsOptionSelected"-->
+                                <!--android:layout_marginBottom="1dp"-->
+                                <!--android:alpha="0.95"-->
+                                <!--android:background="#ffffff"-->
+                                <!--android:drawableEnd="@drawable/ic_chevron_right"-->
+                                <!--android:drawablePadding="15dp"-->
+                                <!--android:gravity="center"-->
+                                <!--android:maxLines="1"-->
+                                <!--android:paddingBottom="1dp"-->
+                                <!--android:paddingEnd="20dp"-->
+                                <!--android:paddingStart="20dp"-->
+                                <!--android:paddingTop="1dp"-->
+                                <!--android:text="Group"-->
+                                <!--android:textAlignment="center"-->
+                                <!--android:textColor="#000000"-->
+                                <!--android:textSize="20sp" />-->
+
+                        <!--</com.npkompleet.phenomenon.bowser.customview.ExpandableRelativeLayout>-->
+
+
+                        <!--<Button-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="65dp"-->
+                            <!--android:layout_marginBottom="1dp"-->
+                            <!--android:alpha="0.95"-->
+                            <!--android:background="#ffffff"-->
+                            <!--android:drawableEnd="@drawable/ic_chevron_right"-->
+                            <!--android:drawablePadding="15dp"-->
+                            <!--android:gravity="center"-->
+                            <!--android:maxLines="1"-->
+                            <!--android:onClick="showProfileActivity"-->
+                            <!--android:paddingEnd="10dp"-->
+                            <!--android:paddingStart="10dp"-->
+                            <!--android:text="Profile"-->
+                            <!--android:textAlignment="center"-->
+                            <!--android:textColor="#000000"-->
+                            <!--android:textSize="24sp" />-->
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <com.npkompleet.phenomenon.bowser.customview.CircularImageView
+                    android:id="@+id/menuview_profilepic"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_centerHorizontal="true"
+                    android:alpha="0.9"
+                    android:onClick="showProfileActivity"
+                    app:civ_border="true"
+                    app:civ_border_width="2dp"
+                    app:civ_shadow="false" />
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
 
     </ScrollView>
-
-
 </RelativeLayout>
-

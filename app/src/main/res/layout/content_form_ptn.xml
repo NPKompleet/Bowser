@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.npkompleet.phenomenon.bowser.forms.FormPTNActivity"
+    tools:showIn="@layout/activity_form_ptn">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fill And Submit PTN"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:id="@+id/ptn_title"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="PTN No"
+            android:text="2"
+            android:maxLength="20"
+            android:id="@+id/ptn_PTNNo"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_title"
+            android:layout_marginTop="8dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="WayBill No"
+            android:maxLength="20"
+            android:id="@+id/ptn_WayBNo"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_PTNNo"
+            android:layout_marginTop="4dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:focusable="false"
+            android:hint="Loading Date"
+            android:id="@+id/ptn_loading_date"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_WayBNo"
+            android:layout_marginTop="8dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLength="50"
+            android:hint="Loading Station"
+            android:id="@+id/ptn_loading_station"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_loading_date"
+            android:layout_marginTop="4dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLength="100"
+            android:hint="Transporter"
+            android:id="@+id/ptn_transporter"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_loading_station"
+            android:layout_marginTop="4dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLength="20"
+            android:hint="Truck No"
+            android:id="@+id/ptn_truck_number"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_transporter"
+            android:layout_marginTop="4dp"/>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLength="100"
+            android:hint="Loader Name"
+            android:id="@+id/ptn_loader_name"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_truck_number"
+            android:layout_marginTop="4dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLength="100"
+            android:hint="Driver Name"
+            android:id="@+id/ptn_driver_name"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_loader_name"
+            android:layout_marginTop="4dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:focusable="false"
+            android:hint="Delivery Date"
+            android:id="@+id/ptn_delivery_date"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_driver_name"
+            android:layout_marginTop="8dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="20"
+            android:hint="PTN Quantity"
+            android:id="@+id/ptn_quantity"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_delivery_date"
+            android:layout_marginTop="4dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:focusable="false"
+            android:hint="To Tank"
+            android:id="@+id/ptn_toTank"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_quantity"
+            android:layout_marginTop="4dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:focusable="false"
+            android:hint="Compute Claimable loss"
+            android:id="@+id/ptn_claimableLoss"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_toTank"
+            android:layout_marginTop="4dp"/>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="20"
+            android:hint="Ullage Dip 1 Before"
+            android:id="@+id/ptn_hDip1"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_claimableLoss"
+            android:layout_marginTop="4dp"/>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="20"
+            android:hint="Ullage Dip 1 After"
+            android:id="@+id/ptn_hDip1after"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_hDip1"
+            android:layout_marginTop="4dp"/>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="20"
+            android:hint="Ullage Volume 1"
+            android:id="@+id/ptn_hVol1"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_hDip1after"
+            android:layout_marginTop="4dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="20"
+            android:hint="Ullage Dip 2 Before"
+            android:id="@+id/ptn_hDip2"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_hVol1"
+            android:layout_marginTop="4dp"/>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="20"
+            android:hint="Ullage Dip 2 After"
+            android:id="@+id/ptn_hDip2after"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_hDip2"
+            android:layout_marginTop="4dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="20"
+            android:hint="Ullage Volume 2"
+            android:id="@+id/ptn_hVol2"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_hDip2after"
+            android:layout_marginTop="4dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="20"
+            android:hint="Ullage Dip 3 Before"
+            android:id="@+id/ptn_hDip3"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_hVol2"
+            android:layout_marginTop="4dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="20"
+            android:hint="Ullage Dip 3 After"
+            android:id="@+id/ptn_hDip3after"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_hDip3"
+            android:layout_marginTop="4dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="20"
+            android:hint="Ullage Volume 3"
+            android:id="@+id/ptn_hVol3"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_hDip3after"
+            android:layout_marginTop="4dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="20"
+            android:hint="Ullage Dip 4 Before"
+            android:id="@+id/ptn_hDip4"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_hVol3"
+            android:layout_marginTop="4dp"/>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="20"
+            android:hint="Ullage Dip 4 After"
+            android:id="@+id/ptn_hDip4after"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_hDip4"
+            android:layout_marginTop="4dp"/>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="20"
+            android:hint="Ullage Volume 4"
+            android:id="@+id/ptn_hVol4"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_hDip4after"
+            android:layout_marginTop="4dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Product Type"
+            android:focusable="false"
+            android:id="@+id/ptn_productType"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_hVol4"
+            android:layout_marginTop="4dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLength="100"
+            android:hint="Seal Numbers"
+            android:id="@+id/ptn_sealNo"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_productType"
+            android:layout_marginTop="4dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="20"
+            android:hint="Drain"
+            android:id="@+id/ptn_drain"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_sealNo"
+            android:layout_marginTop="4dp"/>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="20"
+            android:hint="Meter Before"
+            android:id="@+id/ptn_MeterStart"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_drain"
+            android:layout_marginTop="4dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="20"
+            android:hint="Dip Before"
+            android:id="@+id/ptn_DipStart"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_MeterStart"
+            android:layout_marginTop="4dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="20"
+            android:hint="Dip Volume Before"
+            android:id="@+id/ptn_DipVolStart"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_DipStart"
+            android:layout_marginTop="4dp"/>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="20"
+            android:hint="Meter After"
+            android:id="@+id/ptn_MeterEnd"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_DipVolStart"
+            android:layout_marginTop="4dp"/>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="20"
+            android:hint="Dip After"
+            android:id="@+id/ptn_DipEnd"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_MeterEnd"
+            android:layout_marginTop="4dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="20"
+            android:hint="Dip Volume After"
+            android:id="@+id/ptn_DipVolEnd"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_DipEnd"
+            android:layout_marginTop="4dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:minLines="2"
+            android:maxLength="250"
+            android:hint="Comment"
+            android:id="@+id/ptn_comment"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_DipVolEnd"
+            android:layout_marginTop="4dp"/>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:focusable="false"
+            android:hint="Quality - Check Date"
+            android:id="@+id/ptnQual_date"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_comment"
+            android:layout_marginTop="4dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLength="20"
+            android:hint="Quality - Batch No."
+            android:id="@+id/ptnQual_batchNo"
+            app:layout_constraintTop_toBottomOf="@+id/ptnQual_date"
+            android:layout_marginTop="4dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:maxLength="20"
+            android:hint="Quality - Temperature"
+            android:id="@+id/ptnQual_temperature"
+            app:layout_constraintTop_toBottomOf="@+id/ptnQual_batchNo"
+            android:layout_marginTop="4dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:maxLength="20"
+            android:hint="Quality - Specific Gravity"
+            android:id="@+id/ptnQual_sg"
+            app:layout_constraintTop_toBottomOf="@+id/ptnQual_temperature"
+            android:layout_marginTop="4dp"/>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLength="20"
+            android:hint="Quality - Colour"
+            android:id="@+id/ptnQual_color"
+            app:layout_constraintTop_toBottomOf="@+id/ptnQual_sg"
+            android:layout_marginTop="4dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLength="100"
+            android:hint="Quality - Test for Water"
+            android:id="@+id/ptnQual_waterTest"
+            app:layout_constraintTop_toBottomOf="@+id/ptnQual_color"
+            android:layout_marginTop="4dp"/>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:maxLength="20"
+            android:hint="Quality - Product Carried Last"
+            android:id="@+id/ptnQual_prodLast"
+            app:layout_constraintTop_toBottomOf="@+id/ptnQual_waterTest"
+            android:layout_marginTop="4dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:minLines="2"
+            android:maxLength="250"
+            android:hint="Quality-Check Comment"
+            android:id="@+id/ptnQual_comment"
+            app:layout_constraintTop_toBottomOf="@+id/ptnQual_prodLast"
+            android:layout_marginTop="4dp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Driver Signature:"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:id="@+id/ptn_signature_text"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@+id/ptnQual_comment" />
+
+
+        <com.github.gcacace.signaturepad.views.SignaturePad
+            android:background="#dddddd"
+            android:layout_width="198dp"
+            android:layout_height="78dp"
+            android:id="@+id/ptn_signature"
+            app:penMaxWidth="3dp"
+            app:penMinWidth="2dp"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_signature_text" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/ptn_signature"
+            android:layout_marginTop="4dp">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="CLEAR"
+                android:id="@+id/ptn_signature_clear"
+                android:background="#ff0000"
+                android:onClick="clearSignature"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="ACCEPT"
+                android:id="@+id/ptn_signature_accept"
+                android:background="#00ff00"/>
+
+        </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>

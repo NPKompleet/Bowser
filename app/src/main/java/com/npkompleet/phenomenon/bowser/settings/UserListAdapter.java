@@ -5,11 +5,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.npkompleet.phenomenon.bowser.R;
 import com.npkompleet.phenomenon.bowser.customview.CircularImageView;
-import com.npkompleet.phenomenon.bowser.mvp.models.UserInfo;
+import com.npkompleet.phenomenon.bowser.mvp.models.User;
+import com.npkompleet.phenomenon.bowser.mvp.models.User;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -24,23 +26,23 @@ import butterknife.ButterKnife;
 public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserViewHolder> {
 
     private Context context;
-    private List<UserInfo> returnedUsers;
+    private List<User> returnedUsers;
     private UserClickHandler clickHandler;
 
-    public UserListAdapter(Context context, List<UserInfo> returnedUsers, UserClickHandler clickHandler) {
+    public UserListAdapter(Context context, List<User> returnedUsers, UserClickHandler clickHandler) {
         this.context = context;
         this.returnedUsers = returnedUsers;
         this.clickHandler = clickHandler;
     }
 
 
-    public void swapData(List<UserInfo> newUsers){
+    public void swapData(List<User> newUsers){
         returnedUsers.clear();
         returnedUsers.addAll(newUsers);
         this.notifyDataSetChanged();
     }
 
-    public void addData(List<UserInfo> moreUsers){
+    public void addData(List<User> moreUsers){
         returnedUsers.addAll(moreUsers);
         this.notifyDataSetChanged();
     }
@@ -52,19 +54,20 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserVi
         return new UserViewHolder(item);
     }
 
+    //populate the viewholder
     @Override
     public void onBindViewHolder(UserListAdapter.UserViewHolder holder, int position) {
 
-        UserInfo user= returnedUsers.get(position);
+        User user= returnedUsers.get(position);
         holder.idView.setText(user.getUserId());
-        holder.nameView.setText(user.getUserFirstName()+ " "+ user.getUserLastName());
+        holder.nameView.setText(user.getFirstName()+ " "+ user.getLastName());
 
-        Picasso.with(context).load(user.getUserPicture())
+        Picasso.with(context).load(user.getPicture())
                 .placeholder(R.drawable.ic_person_outline)
                 .error(R.drawable.ic_person_outline)
                 .into(holder.imageView);
 
-        if(user.getUserStatus().equals("Blocked")){
+        if(!user.getStatus().equals("Blocked")){
             holder.statusView.setImageResource(R.drawable.ic_block);
             holder.statusView.setBackgroundColor(context.getResources().getColor(R.color.blocked));
         }
@@ -89,7 +92,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserVi
         CircularImageView imageView;
 
         @BindView(R.id.user_imageStatus)
-        CircularImageView statusView;
+        ImageView statusView;
 
 
         public UserViewHolder(View itemView) {
@@ -106,7 +109,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserVi
     }
 
     public interface UserClickHandler{
-        void onClickUser(UserInfo user);
+        void onClickUser(User user);
     }
 
 
