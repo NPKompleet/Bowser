@@ -2,6 +2,9 @@ package com.npkompleet.phenomenon.bowser.forms;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -291,7 +294,9 @@ public class FormLMFActivity extends AppCompatActivity {
 
 
     public void saveForm(View view) {
-        if (validInputs(date, prodType, fromStorage, fromDrain, meterStart, timeStart, fromDipStart, fromDipVolStart, meterEnd, timeEnd,
+        if(!networkActive()){
+            Toast.makeText(this, "No network. Please turn on your internet connection", Toast.LENGTH_LONG).show();
+        }else if (validInputs(date, prodType, fromStorage, fromDrain, meterStart, timeStart, fromDipStart, fromDipVolStart, meterEnd, timeEnd,
                 fromDipEnd, fromDipVolEnd, toStorage, toDrain, toDipStart, toDipVolStart, toDipEnd,
                 toDipVolumeEnd)) {
 
@@ -383,4 +388,9 @@ public class FormLMFActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public boolean networkActive() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+        return networkInfo != null && networkInfo.isConnected();
+    }
 }

@@ -59,7 +59,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:maxLength="20"
             android:hint="From-Drain"
             android:id="@+id/lmf_fromDrain"
@@ -69,7 +69,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:maxLength="20"
             android:hint="Meter Start"
             android:id="@+id/lmf_meterStart"
@@ -90,7 +90,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:maxLength="20"
             android:hint="From-Dip Start"
             android:id="@+id/lmf_fromDipStart"
@@ -100,7 +100,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:maxLength="20"
             android:hint="From-Dip Volume Start"
             android:id="@+id/lmf_fromDipVolStart"
@@ -110,7 +110,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:maxLength="20"
             android:hint="Meter End"
             android:id="@+id/lmf_meterEnd"
@@ -129,7 +129,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:maxLength="20"
             android:hint="From-Dip End"
             android:id="@+id/lmf_fromDipEnd"
@@ -139,7 +139,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:maxLength="20"
             android:hint="From-Dip Volume End"
             android:id="@+id/lmf_fromDipVolEnd"
@@ -160,7 +160,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:maxLength="20"
             android:hint="To-Drain"
             android:id="@+id/lmf_toDrain"
@@ -170,7 +170,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:maxLength="20"
             android:hint="To-Dip Start"
             android:id="@+id/lmf_toDipStart"
@@ -180,7 +180,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:maxLength="20"
             android:hint="To-Dip Volume Start"
             android:id="@+id/lmf_toDipVolStart"
@@ -190,7 +190,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:maxLength="20"
             android:hint="To-Dip End"
             android:id="@+id/lmf_toDipEnd"
@@ -200,7 +200,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:maxLength="20"
             android:hint="To-Dip Volume End"
             android:id="@+id/lmf_toDipVolEnd"
@@ -210,7 +210,7 @@
         <!--<EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:maxLength="20"
             android:hint="Haulage Dip 4"
             android:id="@+id/ptn_hDip4"
@@ -220,7 +220,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:maxLength="20"
             android:hint="Haulage Volume 4"
             android:id="@+id/ptn_hVol4"
@@ -250,7 +250,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:maxLength="20"
             android:hint="Drain"
             android:id="@+id/ptn_drain"
@@ -261,7 +261,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:maxLength="20"
             android:hint="Meter Start"
             android:id="@+id/ptn_MeterStart"
@@ -271,7 +271,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:maxLength="20"
             android:hint="Dip Start"
             android:id="@+id/ptn_DipStart"
@@ -281,7 +281,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:maxLength="20"
             android:hint="Dip Volume Start"
             android:id="@+id/ptn_DipVolStart"
@@ -292,7 +292,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:maxLength="20"
             android:hint="Meter End"
             android:id="@+id/ptn_MeterEnd"
@@ -303,7 +303,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:maxLength="20"
             android:hint="Dip End"
             android:id="@+id/ptn_DipEnd"
@@ -313,7 +313,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:maxLength="20"
             android:hint="Dip Volume End"
             android:id="@+id/ptn_DipVolEnd"

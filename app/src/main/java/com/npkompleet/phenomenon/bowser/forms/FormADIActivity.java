@@ -1,7 +1,12 @@
 package com.npkompleet.phenomenon.bowser.forms;
 
+import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -123,6 +129,12 @@ public class FormADIActivity extends AppCompatActivity {
     int hour;
     int minute;
 
+    Calendar mcurrentDate;
+    DatePickerDialog mDatePicker;
+    int mYear;
+    int mMonth;
+    int mDay;
+
 
     MyApiEndpointInterface myApi= RetrofitUtils.getService();
     static List<Customer> customers;
@@ -147,20 +159,43 @@ public class FormADIActivity extends AppCompatActivity {
         });*/
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        showAlertDialog();
+
         DateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String[] dt= dateFormat.format(new Date()).split(" ");
+        Calendar c= Calendar.getInstance();
+        Date d= new Date();
+        String[] dt= dateFormat.format(d).split(" ");
+        c.setTime(d);
+        c.add(Calendar.SECOND, 1);
         date.setText(dt[0]);
         parkTime.setText(dt[1]);
+        d= c.getTime();
+        dt= dateFormat.format(d).split(" ");
         timeStart.setText(dt[1]);
-
-
     }
 
-    @OnClick({R.id.adi_bowserFrom,  R.id.adi_customer, R.id.adi_packageType, R.id.adi_productType,
+    @OnClick({R.id.adi_date, R.id.adi_bowserFrom,  R.id.adi_customer, R.id.adi_packageType, R.id.adi_productType,
     R.id.adi_parkTime, R.id.adi_timeStart, R.id.adi_timeEnd})
     public void viewClicked(View view) {
 
         switch (view.getId()) {
+            case R.id.adi_date:
+                mcurrentDate = Calendar.getInstance();
+                mYear = mcurrentDate.get(Calendar.YEAR);
+                mMonth = mcurrentDate.get(Calendar.MONTH);
+                mDay = mcurrentDate.get(Calendar.DAY_OF_MONTH);
+
+
+                mDatePicker = new DatePickerDialog(FormADIActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
+                        selectedmonth = selectedmonth + 1;
+                        date.setText(selectedyear + "-" + selectedmonth + "-" + selectedday);
+                    }
+                }, mYear, mMonth, mDay);
+                mDatePicker.setTitle("Select Park Date");
+                mDatePicker.show();
+                break;
+
             case R.id.adi_packageType:
                 PopupMenu packagePopUp = new PopupMenu(this, packageType);
                 packagePopUp.getMenuInflater().inflate(R.menu.package_type_menu, packagePopUp.getMenu());
@@ -242,43 +277,6 @@ public class FormADIActivity extends AppCompatActivity {
                 bowserPopUp.show();
                 break;
 
-            /*case R.id.adi_salesLocation:
-                final PopupMenu locationPopUp= new PopupMenu(this, salesLocation);
-
-                Query locationQuery= new Query();
-                locationQuery.setMainTable("fait_locations");
-
-                Call<List<Location>> locationCall = myApi.getLocations(locationQuery);
-                locationCall.enqueue(new Callback<List<Location>>(){
-
-                    @Override
-                    public void onResponse(Call<List<Location>> call, Response<List<Location>> response) {
-                        for (Location location : response.body()){
-                            locationPopUp.getMenu().add(location.getFaitLocationsName()+" , "+ location.getFaitLocationsSystemCode());
-                        }
-                        locationPopUp.getMenu().removeItem(0);
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<Location>> call, Throwable t) {
-                        Toast.makeText(FormADIActivity.this, "Something went wrong. Try again", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-                locationPopUp.getMenu().add("Loading locations....");
-
-
-                locationPopUp.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener(){
-
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        salesLocation.setText(item.getTitle());
-                        return true;
-                    }
-                });
-
-                locationPopUp.show();
-                break;*/
 
             case  R.id.adi_customer:
                 final PopupMenu customerPopUp= new PopupMenu(this, customer);
@@ -377,7 +375,10 @@ public class FormADIActivity extends AppCompatActivity {
     }
 
     public void saveForm(View view){
-        if (validInputs(date, parkTime, bowserFrom, customer, salesLocation, aircaftType, airCraftNo, productType,
+        if(!networkActive()){
+            Toast.makeText(this, "No network. Please turn on your internet connection", Toast.LENGTH_LONG).show();
+
+        }else if (validInputs(date, parkTime, bowserFrom, customer, salesLocation, aircaftType, airCraftNo, productType,
                 packageType, specificGravity, bowserMeterStart, timeStart, bowserMeterEnd, timeEnd, aircraftMassStart, aircraftMassEnd,
                 customerName)) {
 
@@ -413,7 +414,8 @@ public class FormADIActivity extends AppCompatActivity {
 
             form.setFaitFormAdiUsersSystemCode(LoginActivity.user.getSystemCode());
             form.setFaitFormAdiSystemCode("");
-
+            showComputedVolumeAlertDialog(Math.abs(Float.parseFloat(bowserMeterStart.getText().toString())
+                    -Float.parseFloat(bowserMeterEnd.getText().toString())));
             InsertUpdateQuery insertADIForm = new InsertUpdateQuery();
             insertADIForm.setTable("fait_form_adi");
             insertADIForm.setMethod("insertAdi");
@@ -434,7 +436,7 @@ public class FormADIActivity extends AppCompatActivity {
                 }
             });
 
-            //finish();
+
         }
 
     }
@@ -483,11 +485,53 @@ public class FormADIActivity extends AppCompatActivity {
         final int COMPRESSION_QUALITY = 100;
         String encodedImage;
         ByteArrayOutputStream byteArrayBitmapStream = new ByteArrayOutputStream();
-        bitmapPicture.compress(Bitmap.CompressFormat.PNG, COMPRESSION_QUALITY,
+        resized.compress(Bitmap.CompressFormat.PNG, COMPRESSION_QUALITY,
                 byteArrayBitmapStream);
         byte[] b = byteArrayBitmapStream.toByteArray();
         encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
         return encodedImage;
+    }
+
+    public boolean networkActive() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+        return networkInfo != null && networkInfo.isConnected();
+    }
+
+    private void showAlertDialog(){
+        new AlertDialog.Builder(this)
+        .setMessage("Remember to note aircraft mass")
+        .setCancelable(false)
+        .setIcon(android.R.drawable.ic_menu_info_details)
+        .setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // Do nothing
+            }
+        })
+        .create()
+        .show();
+    }
+
+    private void showComputedVolumeAlertDialog(Float volume){
+//        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+//        alertDialogBuilder.setMessage("Your computed volume sold is "+ volume);
+//        alertDialogBuilder.setCancelable(true);
+//        alertDialogBuilder.setIcon(android.R.drawable.ic_menu_info_details);
+//        alertDialogBuilder.show();
+
+        new AlertDialog.Builder(this)
+                .setMessage("Your computed volume sold is "+ volume)
+                .setCancelable(false)
+                .setIcon(android.R.drawable.ic_menu_info_details)
+                .setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // Do nothing for now
+                    }
+                })
+                .create()
+                .show();
     }
 
 }

@@ -175,7 +175,7 @@ public class LoginActivity extends AppCompatActivity{
     public void onClick(){
 
         if (anyFieldIsEmpty()){
-            Snackbar.make(mLoginFormView, "Email or Password cannot be empty", Snackbar.LENGTH_LONG)
+            Snackbar.make(mLoginFormView, "UserId or Password cannot be empty", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
             return;
         }
@@ -234,18 +234,20 @@ public class LoginActivity extends AppCompatActivity{
                         startMenuActivity(user);
                     }else{
                         mProgressView.setVisibility(View.GONE);
-                        Snackbar.make(mLoginFormView, "Wrong Email or Password", Snackbar.LENGTH_LONG)
+                        Snackbar.make(mLoginFormView, "Wrong UserId or Password. Try again", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
                     }
                 }catch (Exception e){
-                    Toast.makeText(LoginActivity.this, "Something went wrong. Try again", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(mLoginFormView, "Wrong UserId or Password. Try again", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<User>> call, Throwable t) {
                 mProgressView.setVisibility(View.GONE);
-                Toast.makeText(LoginActivity.this, "Something went wrong. Try again", Toast.LENGTH_SHORT).show();
+                Snackbar.make(mLoginFormView, "Wrong UserId or Password. Try again", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
                 t.printStackTrace();
 
             }

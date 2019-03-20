@@ -1,10 +1,13 @@
 package com.npkompleet.phenomenon.bowser;
 
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -119,7 +122,7 @@ public class MenuActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if(assets == null) {
+        if(assets == null && networkActive()) {
             AssetQuery assetQuery = new AssetQuery();
             assetQuery.setWhereValues(assetQuery.new WhereValues(LoginActivity.user.getLocationsSystemCode(), "Activated"));
 
@@ -130,7 +133,7 @@ public class MenuActivity extends AppCompatActivity {
                 public void onResponse(Call<List<Asset>> call, Response<List<Asset>> response) {
                     try {
                         assets = response.body();
-                        Toast.makeText(MenuActivity.this, "Assets loaded", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(MenuActivity.this, "Assets loaded", Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
                         Toast.makeText(MenuActivity.this, "Unable to load assets", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
@@ -143,6 +146,8 @@ public class MenuActivity extends AppCompatActivity {
                     Toast.makeText(MenuActivity.this, "Something went wrong. Try again", Toast.LENGTH_SHORT).show();
                 }
             });
+        }else if(!networkActive()){
+            Toast.makeText(MenuActivity.this, "No network. Please turn on your internet connection", Toast.LENGTH_LONG).show();
         }
 
     }
@@ -277,6 +282,12 @@ public class MenuActivity extends AppCompatActivity {
                 break;
 
         }
+    }
+
+    public boolean networkActive() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+        return networkInfo != null && networkInfo.isConnected();
     }
 
 

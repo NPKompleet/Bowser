@@ -112,6 +112,8 @@ public class ListPTN extends AppCompatActivity implements SwipeRefreshLayout.OnR
         if (!networkActive()){
             Snackbar.make(fab, "No network available. Check your network", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
+            textView.setText("No network available. Check your network");
+            textView.setVisibility(View.VISIBLE);
             return;
         }
 
@@ -154,8 +156,8 @@ public class ListPTN extends AppCompatActivity implements SwipeRefreshLayout.OnR
             @Override
             public void onFailure(Call<List<PrintPTN>> call, Throwable t) {
                 swipeRefreshLayout.setRefreshing(false);
-                Toast.makeText(ListPTN.this, "Something went wrong. Try again", Toast.LENGTH_SHORT).show();
-                textView.setText("Unable to fetch PTN forms");
+                //Toast.makeText(ListPTN.this, "Something went wrong. Try again", Toast.LENGTH_SHORT).show();
+                textView.setText("There are no PTN forms submitted in the last 24 hours");
                 textView.setVisibility(View.VISIBLE);
                 t.printStackTrace();
 
@@ -245,7 +247,8 @@ public class ListPTN extends AppCompatActivity implements SwipeRefreshLayout.OnR
                 
                 printText("METER AFTER: "+ ptn.getFaitFormPtnMeterEnd()+" LTRS");
                 
-                printText("Volume: "+ ptn.getFaitFormPtnQuantityReceivedByMeter()+" LTRS");
+                printText("VOLUME: "+ ptn.getFaitFormPtnQuantityReceivedByMeter()+" LTRS");
+                printText("LOSS: "+ ptn.getFaitFormPtnClaimableLoss()+" LTRS");
                 printText("Q/C B/N: "+ ptn.getFaitFormPtnQualityBatchNo());
                 printText("Q/C DATE: "+ ptn.getFaitFormPtnQualityDate());
                 printText("COLOR: "+ ptn.getFaitFormPtnQualityColour());

@@ -83,70 +83,9 @@ public class PrintPTN {
     @SerializedName("fait_form_ptn_quality_date")
     @Expose
     private String faitFormPtnQualityDate;
-
-    /**
-     * No args constructor for use in serialization
-     *
-     */
-    public PrintPTN() {
-    }
-
-    /**
-     *
-     * @param faitFormPtnQualityTemperature
-     * @param faitLocationsName
-     * @param faitFormPtnQuantity
-     * @param faitFormPtnProductType
-     * @param faitFormPtnQualityProductLastCarried
-     * @param faitFormPtnDriverName
-     * @param faitFormPtnTransporter
-     * @param faitFormPtnTruckNo
-     * @param faitUsersFirstname
-     * @param faitFormPtnQualityBatchNo
-     * @param faitFormPtnLoaderName
-     * @param faitFormPtnLoadingDate
-     * @param faitFormPtnLoadingStation
-     * @param faitUsersLastname
-     * @param faitFormPtnWaybillNo
-     * @param faitFormPtnMeterEnd
-     * @param faitFormPtnNo
-     * @param faitFormPtnDeliveryDate
-     * @param faitFormPtnQuantityReceivedByMeter
-     * @param faitFormPtnQualityTestForWater
-     * @param faitFormPtnQualityColour
-     * @param faitFormPtnQualitySpecificGravity
-     * @param faitFormPtnQualityDate
-     * @param faitFormPtnMeterStart
-     * @param faitAssetsStorageName
-     */
-    public PrintPTN(String faitFormPtnDeliveryDate, String faitFormPtnNo, String faitFormPtnQuantityReceivedByMeter, String faitFormPtnLoadingStation, String faitFormPtnWaybillNo, String faitFormPtnMeterStart, String faitFormPtnTransporter, String faitFormPtnTruckNo, String faitFormPtnMeterEnd, String faitUsersLastname, String faitUsersFirstname, String faitLocationsName, String faitFormPtnDriverName, String faitFormPtnLoaderName, String faitAssetsStorageName, String faitFormPtnQuantity, String faitFormPtnProductType, String faitFormPtnLoadingDate, String faitFormPtnQualitySpecificGravity, String faitFormPtnQualityColour, String faitFormPtnQualityTemperature, String faitFormPtnQualityBatchNo, String faitFormPtnQualityTestForWater, String faitFormPtnQualityProductLastCarried, String faitFormPtnQualityDate) {
-        super();
-        this.faitFormPtnDeliveryDate = faitFormPtnDeliveryDate;
-        this.faitFormPtnNo = faitFormPtnNo;
-        this.faitFormPtnQuantityReceivedByMeter = faitFormPtnQuantityReceivedByMeter;
-        this.faitFormPtnLoadingStation = faitFormPtnLoadingStation;
-        this.faitFormPtnWaybillNo = faitFormPtnWaybillNo;
-        this.faitFormPtnMeterStart = faitFormPtnMeterStart;
-        this.faitFormPtnTransporter = faitFormPtnTransporter;
-        this.faitFormPtnTruckNo = faitFormPtnTruckNo;
-        this.faitFormPtnMeterEnd = faitFormPtnMeterEnd;
-        this.faitUsersLastname = faitUsersLastname;
-        this.faitUsersFirstname = faitUsersFirstname;
-        this.faitLocationsName = faitLocationsName;
-        this.faitFormPtnDriverName = faitFormPtnDriverName;
-        this.faitFormPtnLoaderName = faitFormPtnLoaderName;
-        this.faitAssetsStorageName = faitAssetsStorageName;
-        this.faitFormPtnQuantity = faitFormPtnQuantity;
-        this.faitFormPtnProductType = faitFormPtnProductType;
-        this.faitFormPtnLoadingDate = faitFormPtnLoadingDate;
-        this.faitFormPtnQualitySpecificGravity = faitFormPtnQualitySpecificGravity;
-        this.faitFormPtnQualityColour = faitFormPtnQualityColour;
-        this.faitFormPtnQualityTemperature = faitFormPtnQualityTemperature;
-        this.faitFormPtnQualityBatchNo = faitFormPtnQualityBatchNo;
-        this.faitFormPtnQualityTestForWater = faitFormPtnQualityTestForWater;
-        this.faitFormPtnQualityProductLastCarried = faitFormPtnQualityProductLastCarried;
-        this.faitFormPtnQualityDate = faitFormPtnQualityDate;
-    }
+    @SerializedName("fait_form_ptn_claimable_loss")
+    @Expose
+    private String faitFormPtnClaimableLoss;
 
     public String getFaitFormPtnDeliveryDate() {
         return faitFormPtnDeliveryDate;
@@ -346,6 +285,14 @@ public class PrintPTN {
 
     public void setFaitFormPtnQualityDate(String faitFormPtnQualityDate) {
         this.faitFormPtnQualityDate = faitFormPtnQualityDate;
+    }
+
+    public String getFaitFormPtnClaimableLoss() {
+        return faitFormPtnClaimableLoss;
+    }
+
+    public void setFaitFormPtnClaimableLoss(String faitFormPtnClaimableLoss) {
+        this.faitFormPtnClaimableLoss = faitFormPtnClaimableLoss;
     }
 
 }

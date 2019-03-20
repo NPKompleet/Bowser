@@ -48,7 +48,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:hint="ADI No"
             android:id="@+id/adi_ADINo"
             app:layout_constraintTop_toBottomOf="@+id/adi_parkTime"
@@ -170,7 +170,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:maxLength="20"
             android:hint="Bowser Meter Before"
             android:id="@+id/adi_bowserMeterStart"
@@ -190,7 +190,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:maxLength="20"
             android:hint="Bowser Meter After"
             android:id="@+id/adi_bowserMeterEnd"
@@ -212,7 +212,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:maxLength="20"
             android:hint="Aircraft Mass Before"
             android:id="@+id/adi_aircraftMassStart"
@@ -223,7 +223,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:maxLength="20"
             android:hint="Aircraft Mass After"
             android:id="@+id/adi_aircraftMassEnd"
@@ -279,21 +279,20 @@
             android:layout_marginTop="4dp">
 
             <Button
-                android:layout_width="0dp"
+                android:layout_width="198dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:text="CLEAR"
                 android:id="@+id/adi_signature_clear"
                 android:background="#ff0000"
                 android:onClick="clearSignature"/>
 
-            <Button
+            <!--<Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="ACCEPT"
                 android:id="@+id/adi_signature_accept"
-                android:background="#00ff00"/>
+                android:background="#00ff00"/>-->
 
         </LinearLayout>
 

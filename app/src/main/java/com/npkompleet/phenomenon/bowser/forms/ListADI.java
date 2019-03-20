@@ -117,6 +117,8 @@ public class ListADI extends AppCompatActivity implements SwipeRefreshLayout.OnR
         if (!networkActive()){
             Snackbar.make(fab, "No network available. Check your network", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
+            textView.setText("No network available. Check your network");
+            textView.setVisibility(View.VISIBLE);
             return;
         }
 
@@ -164,8 +166,8 @@ public class ListADI extends AppCompatActivity implements SwipeRefreshLayout.OnR
             @Override
             public void onFailure(Call<List<PrintADI>> call, Throwable t) {
                 swipeRefreshLayout.setRefreshing(false);
-                Toast.makeText(ListADI.this, "Something went wrong. Try again", Toast.LENGTH_SHORT).show();
-                textView.setText("Unable to fetch ADI forms");
+                //Toast.makeText(ListADI.this, "Something went wrong. Try again", Toast.LENGTH_SHORT).show();
+                textView.setText("There are no ADI forms submitted in the last 24 hours");
                 textView.setVisibility(View.VISIBLE);
                 t.printStackTrace();
 
@@ -203,22 +205,6 @@ public class ListADI extends AppCompatActivity implements SwipeRefreshLayout.OnR
                 outputStream.write(printformat);
 
 
-//                printCustom("Fair Group BD",2,1);
-//                printCustom("Pepperoni Foods Ltd.",0,1);
-//                printPhoto(LOGO);
-//                printCustom("H-123, R-123, Dhanmondi, Dhaka-1212",0,1);
-//                printCustom("Hot Line: +88000 000000",0,1);
-//                printCustom(" Vat Reg : 0000000000,Mushak : 11",0,1);
-//                String dateTime[] = getDateTime();
-//                printText(leftRightAlign(dateTime[0], dateTime[1]));
-//                printText(leftRightAlign("Qty: Name" , "Price "));
-//                printCustom(new String(new char[32]).replace("\0", "."),0,1);
-//                printText(leftRightAlign("Total" , "2,0000/="));
-//                printNewLine();
-//                printCustom("Thank you for coming & we look",0,1);
-//                printCustom("forward to serve you again",0,1);
-//                printNewLine();
-//                printNewLine();
                 printNewLine();
                 printNewLine();
                 printPhoto(LOGO);

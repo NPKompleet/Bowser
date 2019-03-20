@@ -44,6 +44,8 @@ import android.widget.Toast;
 import com.npkompleet.phenomenon.bowser.R;
 import com.npkompleet.phenomenon.bowser.forms.ListADI;
 
+import static android.app.Activity.RESULT_OK;
+
 
 public class DeviceList extends /*ListActivity*/ AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener{
 
@@ -431,42 +433,7 @@ public class DeviceList extends /*ListActivity*/ AppCompatActivity implements Sw
     @Override
     protected void onStart() {
         super.onStart();
-        /*if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.BLUETOOTH)
-                != PackageManager.PERMISSION_GRANTED && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            Toast.makeText(
-                    getApplicationContext(),
-                    "No Bluetooth Permissions Granted",
-                    Toast.LENGTH_SHORT).show();
 
-            // Permission is not granted
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.BLUETOOTH)) {
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-                Toast.makeText(
-                        getApplicationContext(),
-                        "Needs Bluetooth",
-                        Toast.LENGTH_SHORT).show();
-            } else {
-                // No explanation needed; request the permission
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.BLUETOOTH*//*, Manifest.permission.BLUETOOTH_ADMIN*//*},
-                        MY_PERMISSIONS_REQUEST_BLUETOOTH);
-
-                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-                // app-defined int constant. The callback method gets the
-                // result of the request.
-            }
-        } else {
-            // Permission has already been granted
-            Toast.makeText(
-                    getApplicationContext(),
-                    "You now have Permissions Granted",
-                    Toast.LENGTH_SHORT).show();
-        }*/
     }
 
 
@@ -494,8 +461,7 @@ public class DeviceList extends /*ListActivity*/ AppCompatActivity implements Sw
                 break;
             }
 
-            // other 'case' lines to check for other
-            // permissions this app might request.
+            
         }
     }
 
@@ -543,12 +509,7 @@ public class DeviceList extends /*ListActivity*/ AppCompatActivity implements Sw
             //holder.mItem = mValues.get(position);
 
             holder.mContentView.setText(mValues.get(position));
-            /*holder.mContentView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onListItemClicked(position);
-                }
-            });*/
+
         }
 
         @Override

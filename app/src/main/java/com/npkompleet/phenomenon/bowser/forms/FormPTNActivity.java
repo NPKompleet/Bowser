@@ -1,7 +1,10 @@
 package com.npkompleet.phenomenon.bowser.forms;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -73,25 +76,25 @@ public class FormPTNActivity extends AppCompatActivity {
 
     @BindView(R.id.ptn_hDip1after) EditText hDip1After;
 
-    @BindView(R.id.ptn_hDip2) EditText hDip2;
-
-    @BindView(R.id.ptn_hDip2after) EditText hDip2After;
-
-    @BindView(R.id.ptn_hDip3) EditText hDip3;
-
-    @BindView(R.id.ptn_hDip3after) EditText hDip3After;
-
-    @BindView(R.id.ptn_hDip4) EditText hDip4;
-
-    @BindView(R.id.ptn_hDip4after) EditText hDip4After;
+//    @BindView(R.id.ptn_hDip2) EditText hDip2;
+//
+//    @BindView(R.id.ptn_hDip2after) EditText hDip2After;
+//
+//    @BindView(R.id.ptn_hDip3) EditText hDip3;
+//
+//    @BindView(R.id.ptn_hDip3after) EditText hDip3After;
+//
+//    @BindView(R.id.ptn_hDip4) EditText hDip4;
+//
+//    @BindView(R.id.ptn_hDip4after) EditText hDip4After;
 
     @BindView(R.id.ptn_hVol1) EditText hVol1;
 
-    @BindView(R.id.ptn_hVol2) EditText hVol2;
-
-    @BindView(R.id.ptn_hVol3) EditText hVol3;
-
-    @BindView(R.id.ptn_hVol4) EditText hVol4;
+//    @BindView(R.id.ptn_hVol2) EditText hVol2;
+//
+//    @BindView(R.id.ptn_hVol3) EditText hVol3;
+//
+//    @BindView(R.id.ptn_hVol4) EditText hVol4;
 
     @BindView(R.id.ptn_productType) EditText productType;
 
@@ -169,7 +172,7 @@ public class FormPTNActivity extends AppCompatActivity {
     }
 
     @OnClick({R.id.ptn_toTank, R.id.ptn_claimableLoss, R.id.ptn_productType, R.id.ptn_delivery_date, R.id.ptn_loading_date,
-    R.id.ptnQual_date, R.id.ptnQual_prodLast})
+    R.id.ptnQual_date})
     public void viewClicked(View view) {
 
         switch (view.getId()) {
@@ -243,8 +246,8 @@ public class FormPTNActivity extends AppCompatActivity {
             case R.id.ptn_claimableLoss:
                 final PopupMenu lossPopUp = new PopupMenu(this, claimableLoss);
 
-                lossPopUp.getMenu().add("YES");
-                lossPopUp.getMenu().add("NO");
+                lossPopUp.getMenu().add("Yes");
+                lossPopUp.getMenu().add("No");
 
                 lossPopUp.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
 
@@ -312,7 +315,7 @@ public class FormPTNActivity extends AppCompatActivity {
                 mDatePicker.show();
                 break;
 
-            case R.id.ptnQual_prodLast:
+            /*case R.id.ptnQual_prodLast:
                 PopupMenu prodLastPopUp = new PopupMenu(this, prodLast);
                 prodLastPopUp.getMenuInflater().inflate(R.menu.product_type_menu, prodLastPopUp.getMenu());
                 prodLastPopUp.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -324,13 +327,15 @@ public class FormPTNActivity extends AppCompatActivity {
                     }
                 });
                 prodLastPopUp.show();
-                break;
+                break;*/
 
         }
     }
 
     public void saveForm(View view){
-        if (validInputs(ptnNo, wBNo, loadingDate, loadingStation, loadingStation, transporter, truckNum, loaderName,
+        if(!networkActive()){
+            Toast.makeText(this, "No network. Please turn on your internet connection", Toast.LENGTH_LONG).show();
+        }else if (validInputs(ptnNo, wBNo, loadingDate, loadingStation, loadingStation, transporter, truckNum, loaderName,
                 driverName, delvDate, quantity, claimableLoss, hDip1, hDip1After, hVol1, productType, sealNum, meterStart,
                 dipStart, dipVolStart, meterEnd, dipEnd, dipVolEnd)) {
 
@@ -353,15 +358,15 @@ public class FormPTNActivity extends AppCompatActivity {
             form.setFaitFormPtnHaullageDip1(hDip1.getText().toString());
             form.setFaitFormPtnHaullageDip1End(hDip1After.getText().toString());
             form.setFaitFormPtnHaullageVolume1(hVol1.getText().toString());
-            form.setFaitFormPtnHaullageDip2(hDip2.getText().toString());
-            form.setFaitFormPtnHaullageDip2End(hDip2After.getText().toString());
-            form.setFaitFormPtnHaullageVolume2(hVol2.getText().toString());
-            form.setFaitFormPtnHaullageDip3(hDip3.getText().toString());
-            form.setFaitFormPtnHaullageDip3End(hDip3After.getText().toString());
-            form.setFaitFormPtnHaullageVolume3(hVol3.getText().toString());
-            form.setFaitFormPtnHaullageDip4(hDip4.getText().toString());
-            form.setFaitFormPtnHaullageDip4End(hDip4After.getText().toString());
-            form.setFaitFormPtnHaullageVolume4(hVol4.getText().toString());
+//            form.setFaitFormPtnHaullageDip2(hDip2.getText().toString());
+//            form.setFaitFormPtnHaullageDip2End(hDip2After.getText().toString());
+//            form.setFaitFormPtnHaullageVolume2(hVol2.getText().toString());
+//            form.setFaitFormPtnHaullageDip3(hDip3.getText().toString());
+//            form.setFaitFormPtnHaullageDip3End(hDip3After.getText().toString());
+//            form.setFaitFormPtnHaullageVolume3(hVol3.getText().toString());
+//            form.setFaitFormPtnHaullageDip4(hDip4.getText().toString());
+//            form.setFaitFormPtnHaullageDip4End(hDip4After.getText().toString());
+//            form.setFaitFormPtnHaullageVolume4(hVol4.getText().toString());
             form.setFaitFormPtnDrain(drain.getText().toString());
             form.setFaitFormPtnProductType(productType.getText().toString());
             form.setFaitFormPtnSeal(sealNum.getText().toString());
@@ -387,7 +392,8 @@ public class FormPTNActivity extends AppCompatActivity {
             form.setFaitFormPtnUsersSystemCode(LoginActivity.user.getSystemCode());
             form.setFaitFormPtnSystemCode("");
 
-
+            showComputedVolumeAlertDialog(Math.abs(Float.parseFloat(meterStart.getText().toString())
+                    -Float.parseFloat(meterEnd.getText().toString())));
             InsertUpdateQuery insertPTNForm = new InsertUpdateQuery();
             insertPTNForm.setTable("fait_form_ptn");
             insertPTNForm.setMethod("insertPtn");
@@ -455,12 +461,25 @@ public class FormPTNActivity extends AppCompatActivity {
         final int COMPRESSION_QUALITY = 100;
         String encodedImage;
         ByteArrayOutputStream byteArrayBitmapStream = new ByteArrayOutputStream();
-        bitmapPicture.compress(Bitmap.CompressFormat.PNG, COMPRESSION_QUALITY,
+        resized.compress(Bitmap.CompressFormat.PNG, COMPRESSION_QUALITY,
                 byteArrayBitmapStream);
         byte[] b = byteArrayBitmapStream.toByteArray();
         encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
         return encodedImage;
     }
 
+    public boolean networkActive() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+        return networkInfo != null && networkInfo.isConnected();
+    }
+
+    private void showComputedVolumeAlertDialog(Float volume){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage("Your computed volume discharge is "+ volume);
+        alertDialogBuilder.setCancelable(true);
+        alertDialogBuilder.setIcon(android.R.drawable.ic_menu_info_details);
+        alertDialogBuilder.show();
+    }
 
 }
